@@ -1,0 +1,28 @@
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  imageName: sampleapi
+
+steps:
+- checkout: self
+
+# Build the image from your Dockerfile
+- task: Docker@2
+  displayName: Build image
+  inputs:
+    command: build
+    repository: $(imageName)
+    dockerfile: '**/Dockerfile'
+    tags: |
+      $(Build.BuildId)
+
+# Login using the Docker Registry service connection and push to ACR
+- task: Docker@2
+  displayName: Push to ACR
+  inputs:
+    command: push
+    repository: $(imageName)
+    containerRegistry: DevOpsTestRegistry    # <- the service connection name
+    tags: |
+      $(Build.BuildId)
