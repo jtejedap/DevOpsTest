@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: 'DevOpsTestRegistry'
   imageRepository: 'webapiimage'
   containerRegistry: 'camqacr.azurecr.io'
-  containerAppName: 'wetherapi'
+  containerAppName: 'weatherapi'
   resourceGroup: 'Cam-Dev-RG'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: 'latest'
